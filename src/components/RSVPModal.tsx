@@ -164,12 +164,12 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/50 backdrop-blur-sm overflow-y-auto safe-pb safe-pt">
-      <div className="bg-[#FFFDF9] border-2 border-[#BACBB0] rounded-2xl sm:rounded-3xl shadow-2xl max-w-lg w-full p-5 sm:p-8 my-auto max-h-[92dvh] overflow-y-auto space-y-5 sm:space-y-6 relative text-[#202C1B] gold-box-glow">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto safe-pb safe-pt">
+      <div className="bg-[#FAF5EA] border-2 border-[#545E46]/60 rounded-2xl sm:rounded-3xl shadow-2xl max-w-lg w-full p-5 sm:p-8 my-auto max-h-[92dvh] overflow-y-auto space-y-5 sm:space-y-6 relative text-[#24301C] gold-box-glow">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#F2F6ED] text-[#3B4D2B] hover:text-[#1D2615] flex items-center justify-center text-sm cursor-pointer transition-colors border border-[#BACBB0]"
+          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#EFE7D8] text-[#545E46] hover:text-[#24301C] flex items-center justify-center text-sm cursor-pointer transition-colors border border-[#C7B99D]"
           aria-label="Close modal"
         >
           ✕
@@ -177,16 +177,16 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
 
         {/* Modal Header with Monogram Touch */}
         <div className="text-center space-y-1">
-          <span className="font-wedding text-4xl text-[#2B3B22] block leading-none font-bold">
+          <span className="font-wedding text-3xl text-[#545E46] block leading-none font-bold">
             T & S
           </span>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-[#5D704E] font-cinzel font-bold pt-1">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-[#545E46] font-cinzel font-bold pt-1">
             Wedding RSVP Confirmation
           </p>
-          <h2 className="font-wedding text-4xl sm:text-5xl font-bold text-[#1D2615] leading-tight">
+          <h2 className="font-wedding italic text-3xl sm:text-4xl font-semibold text-[#24301C] leading-tight">
             Tinashey & Samukelisiwe
           </h2>
-          <p className="text-xs font-serif-luxury text-[#5D704E] font-medium">
+          <p className="text-xs font-serif-luxury text-[#545E46] font-medium">
             Life Celebrations Center · Monday, 21 December 2026
           </p>
         </div>

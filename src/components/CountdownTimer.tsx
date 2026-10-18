@@ -40,11 +40,11 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
   }, [targetDate]);
 
   return (
-    <div className="bg-[#FAF8F5] border border-[#C2D2B2] rounded-2xl p-4 sm:p-6 max-w-md mx-auto space-y-3.5 shadow-sm">
+    <div className="bg-[#F5EEDB] border border-[#C7B99D] rounded-2xl p-4 sm:p-6 max-w-md mx-auto space-y-3.5 shadow-sm">
       {/* Urgency Badge Header */}
       <div className="flex items-center justify-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#5D7946] animate-ping" />
-        <p className="font-cinzel uppercase text-[10px] sm:text-[11px] tracking-[0.25em] text-[#3B4D2B] font-bold">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#545E46] animate-ping" />
+        <p className="font-cinzel uppercase text-[10px] sm:text-[11px] tracking-[0.25em] text-[#333C29] font-bold">
           Days Remaining Until The Union
         </p>
       </div>
@@ -52,42 +52,42 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
       {/* Countdown Grid (Prominently highlighting Days) */}
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {/* Days - Highlighted with Olive & Cream Silk */}
-        <div className="bg-[#FFFFFF] border-2 border-[#7A9961] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs relative overflow-hidden group">
-          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#7A9961] to-transparent" />
+        <div className="bg-[#FAF5EA] border-2 border-[#545E46] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs relative overflow-hidden group">
+          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#545E46] to-transparent" />
           <span className="font-cinzel text-2xl sm:text-4xl font-bold gold-gradient-text tabular-nums block leading-none">
             {timeLeft.days}
           </span>
-          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#3B4D2B] block mt-1 font-bold">
+          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#333C29] block mt-1 font-bold">
             Days
           </span>
         </div>
 
         {/* Hours */}
-        <div className="bg-[#FFFFFF] border border-[#BACBB0] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
-          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#202C1B] tabular-nums block leading-none">
+        <div className="bg-[#EFE7D8] border border-[#C7B99D] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
+          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#24301C] tabular-nums block leading-none">
             {String(timeLeft.hours).padStart(2, '0')}
           </span>
-          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#5D704E] block mt-1 font-medium">
+          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#545E46] block mt-1 font-medium">
             Hours
           </span>
         </div>
 
         {/* Minutes */}
-        <div className="bg-[#FFFFFF] border border-[#BACBB0] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
-          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#202C1B] tabular-nums block leading-none">
+        <div className="bg-[#EFE7D8] border border-[#C7B99D] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
+          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#24301C] tabular-nums block leading-none">
             {String(timeLeft.minutes).padStart(2, '0')}
           </span>
-          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#5D704E] block mt-1 font-medium">
+          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#545E46] block mt-1 font-medium">
             Mins
           </span>
         </div>
 
         {/* Seconds */}
-        <div className="bg-[#FFFFFF] border border-[#BACBB0] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
-          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#202C1B] tabular-nums block leading-none">
+        <div className="bg-[#EFE7D8] border border-[#C7B99D] rounded-xl py-2 sm:py-3 px-1 text-center shadow-xs">
+          <span className="font-cinzel text-xl sm:text-3xl font-semibold text-[#24301C] tabular-nums block leading-none">
             {String(timeLeft.seconds).padStart(2, '0')}
           </span>
-          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#5D704E] block mt-1 font-medium">
+          <span className="font-cinzel text-[8px] sm:text-[10px] uppercase tracking-wider text-[#545E46] block mt-1 font-medium">
             Secs
           </span>
         </div>

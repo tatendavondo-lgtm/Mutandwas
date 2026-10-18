@@ -66,7 +66,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FAF7F0]/92 backdrop-blur-md border-b border-[#D5DEC9] transition-all text-[#202C1B] shadow-xs">
+    <header className="sticky top-0 z-40 bg-[#EFE7D8]/95 backdrop-blur-md border-b border-[#C7B99D] transition-all text-[#24301C] shadow-xs">
       <div className="max-w-5xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand Wordmark: Clicking T&S triggers secret staff portal PIN modal! */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -74,9 +74,9 @@ export const Navigation: React.FC<NavigationProps> = ({
             onClick={onOpenStaffModal}
             title={config?.coupleNames || "Tinashey & Samukelisiwe"}
             aria-label="Staff Access Portal"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#7A9961]/70 bg-[#F2F6ED] hover:bg-[#E5EDDC] active:scale-95 flex items-center justify-center shadow-xs cursor-pointer transition-all focus:outline-none"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#545E46]/80 bg-[#E4D9C0] hover:bg-[#DCD0B5] active:scale-95 flex items-center justify-center shadow-xs cursor-pointer transition-all focus:outline-none"
           >
-            <span className="font-wedding text-xl sm:text-2xl text-[#2C3A20] leading-none pt-1 sm:pt-2 select-none font-bold">
+            <span className="font-wedding text-lg sm:text-xl text-[#26331C] leading-none pt-0.5 select-none font-bold">
               T&S
             </span>
           </button>
@@ -84,10 +84,10 @@ export const Navigation: React.FC<NavigationProps> = ({
             onClick={() => onNavigate('invitation')}
             className="text-left group cursor-pointer focus-visible:outline-none flex flex-col"
           >
-            <span className="font-wedding text-2xl sm:text-4xl text-[#202C1B] group-hover:text-[#4C6239] transition-colors whitespace-nowrap leading-none pt-1">
+            <span className="font-wedding italic text-2xl sm:text-3.5xl text-[#24301C] group-hover:text-[#545E46] transition-colors whitespace-nowrap leading-none pt-0.5 font-semibold">
               {config?.coupleNames || 'Tinashey & Samukelisiwe'}
             </span>
-            <span className="font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-[#5D704E] hidden xs:block font-medium">
+            <span className="font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-[#545E46] hidden xs:block font-medium">
               21 December 2026
             </span>
           </button>

@@ -54,43 +54,43 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/50 backdrop-blur-sm overflow-y-auto safe-pb safe-pt">
-      <div className="bg-[#FFFDF9] border-2 border-[#BACBB0] rounded-2xl sm:rounded-3xl shadow-2xl max-w-md w-full overflow-hidden my-auto max-h-[94dvh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 text-[#202C1B] gold-box-glow">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto safe-pb safe-pt">
+      <div className="bg-[#FAF5EA] border-2 border-[#545E46]/60 rounded-2xl sm:rounded-3xl shadow-2xl max-w-md w-full overflow-hidden my-auto max-h-[94dvh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 text-[#24301C] gold-box-glow">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3.5 right-3.5 z-10 w-8 h-8 rounded-full bg-[#F2F6ED] hover:bg-[#E5EDDC] text-[#3B4D2B] flex items-center justify-center text-sm cursor-pointer transition-colors no-print border border-[#BACBB0]"
+          className="absolute top-3.5 right-3.5 z-10 w-8 h-8 rounded-full bg-[#EFE7D8] hover:bg-[#E2D5BE] text-[#545E46] flex items-center justify-center text-sm cursor-pointer transition-colors no-print border border-[#C7B99D]"
           aria-label="Close pass modal"
         >
           ✕
         </button>
 
         {/* Top Gala Header Strip in Light Silk Cream & Olive */}
-        <div className="bg-gradient-to-b from-[#FAF8F5] to-[#F5EFE6] border-b border-[#BACBB0] text-[#202C1B] p-6 pb-5 text-center space-y-1 relative">
-          <div className="inline-block border border-[#BACBB0] bg-[#EAF0E4] px-3 py-0.5 rounded-full text-[10px] uppercase tracking-[0.25em] text-[#2B3B22] font-cinzel mb-1 font-bold">
+        <div className="bg-gradient-to-b from-[#FAF5EA] to-[#EFE7D8] border-b border-[#C7B99D] text-[#24301C] p-6 pb-5 text-center space-y-1 relative">
+          <div className="inline-block border border-[#C7B99D] bg-[#E5DAC4] px-3 py-0.5 rounded-full text-[10px] uppercase tracking-[0.25em] text-[#24301C] font-cinzel mb-1 font-bold">
             Official Gate Pass
           </div>
-          <h3 className="font-wedding text-3xl sm:text-4xl font-bold text-[#1D2615]">
+          <h3 className="font-wedding italic text-3xl sm:text-4xl font-semibold text-[#24301C]">
             {config.coupleNames}
           </h3>
-          <p className="font-cinzel text-xs text-[#5D704E] tracking-wider font-semibold">
+          <p className="font-cinzel text-xs text-[#545E46] tracking-wider font-semibold">
             {config.venueName} · Goodhope
           </p>
         </div>
 
         {/* Ticket Perforation Graphic */}
-        <div className="relative bg-[#F5EFE6] pb-3">
+        <div className="relative bg-[#EFE7D8] pb-3">
           <div className="flex items-center justify-between px-2">
-            <div className="w-5 h-5 rounded-full bg-[#FFFDF9] -ml-5.5 border-r border-[#BACBB0]" />
-            <div className="border-b border-dashed border-[#BACBB0] w-full mx-2" />
-            <div className="w-5 h-5 rounded-full bg-[#FFFDF9] -mr-5.5 border-l border-[#BACBB0]" />
+            <div className="w-5 h-5 rounded-full bg-[#FAF5EA] -ml-5.5 border-r border-[#C7B99D]" />
+            <div className="border-b border-dashed border-[#C7B99D] w-full mx-2" />
+            <div className="w-5 h-5 rounded-full bg-[#FAF5EA] -mr-5.5 border-l border-[#C7B99D]" />
           </div>
         </div>
 
         {/* Pass Body Content */}
         <div className="p-5 sm:p-6 pt-2 space-y-4 sm:space-y-5">
           {/* Guest Callout */}
-          <div className="bg-[#FAF8F5] border border-[#BACBB0] rounded-2xl p-4 shadow-xs space-y-3">
+          <div className="bg-[#F5EEDB] border border-[#C7B99D] rounded-2xl p-4 shadow-xs space-y-3">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-[#5D704E] font-mono block font-bold">

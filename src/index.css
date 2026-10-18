@@ -1,44 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --font-script: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
-  --font-wedding: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
+  --font-script: "Alex Brush", "Great Vibes", cursive;
+  --font-wedding: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* Olive Green & Silk Cream Luxury Palette */
-  --color-cream-50: #FDFBF7;
-  --color-cream-100: #F8F3EA;
-  --color-cream-200: #EFE6D5;
-  --color-cream-300: #E5D9C3;
-  --color-cream-400: #D9CBB2;
+  /* Authentic Olive Green & Silk Cream Luxury Palette */
+  --color-cream-50: #FAF5EA;
+  --color-cream-100: #F4EDE0;
+  --color-cream-200: #EFE7D8;
+  --color-cream-300: #E5DAC4;
+  --color-cream-400: #D8C9AE;
   --color-cream-500: #C4B294;
 
-  --color-olive-50: #F2F5ED;
-  --color-olive-100: #DFE7D6;
-  --color-olive-200: #C2D2B2;
-  --color-olive-300: #A0B98A;
-  --color-olive-400: #7A9961;
-  --color-olive-500: #5D7946;
-  --color-olive-600: #4B6237;
-  --color-olive-700: #3B4D2B;
-  --color-olive-800: #2C3A20;
-  --color-olive-900: #1D2615;
-  --color-olive-950: #12190D;
+  --color-olive-50: #EDF2E8;
+  --color-olive-100: #DCE6D2;
+  --color-olive-200: #BED0AF;
+  --color-olive-300: #9BB584;
+  --color-olive-400: #758F5C;
+  --color-olive-500: #545E46;
+  --color-olive-600: #424B35;
+  --color-olive-700: #333C29;
+  --color-olive-800: #252D1E;
+  --color-olive-900: #192013;
+  --color-olive-950: #0E130B;
 
   /* Legacy mapping mapped to Olive & Cream */
-  --color-champagne-50: #FDFBF7;
-  --color-champagne-100: #F8F3EA;
-  --color-champagne-200: #EFE6D5;
-  --color-champagne-300: #E5D9C3;
-  --color-champagne-400: #D9CBB2;
-  --color-champagne-500: #8DA579;
-  --color-champagne-600: #5D704E;
-  --color-champagne-700: #3B4D2B;
+  --color-champagne-50: #FAF5EA;
+  --color-champagne-100: #F4EDE0;
+  --color-champagne-200: #EFE7D8;
+  --color-champagne-300: #E5DAC4;
+  --color-champagne-400: #D8C9AE;
+  --color-champagne-500: #758F5C;
+  --color-champagne-600: #545E46;
+  --color-champagne-700: #333C29;
 
-  --color-obsidian-950: #0E150C;
+  --color-obsidian-950: #0E130B;
   --color-obsidian-900: #141D12;
   --color-obsidian-850: #1A2617;
   --color-obsidian-800: #233220;
@@ -48,11 +48,11 @@ html, body {
   min-height: 100%;
   min-height: 100dvh;
   overflow-x: hidden;
-  background-color: #F8F5EE;
+  background-color: #EFE7D8;
   background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(160, 185, 138, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse at 50% 100%, rgba(229, 217, 195, 0.45) 0%, transparent 70%);
-  color: #202C1B;
+    radial-gradient(ellipse at 50% 0%, rgba(84, 94, 70, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse at 50% 100%, rgba(217, 198, 168, 0.60) 0%, transparent 75%);
+  color: #24301C;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -85,9 +85,13 @@ body:-webkit-full-screen {
   padding-top: max(0.5rem, env(safe-area-inset-top));
 }
 
-.font-script,
+.font-script {
+  font-family: "Alex Brush", "Great Vibes", cursive;
+}
+
 .font-wedding {
-  font-family: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  letter-spacing: 0.015em;
 }
 
 .font-serif-luxury {
@@ -98,20 +102,20 @@ body:-webkit-full-screen {
   font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
 }
 
-/* Shimmering Olive Silk Text for Light Mode */
+/* Shimmering Rich Olive Silk Text */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #182413 0%, #2F3F24 35%, #4C6239 70%, #23311B 100%);
+  background: linear-gradient(135deg, #1A2413 0%, #364429 35%, #545E46 70%, #202A18 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Olive Green & Silk Cream Card Box Shadows for Light Mode */
+/* Olive Green & Silk Cream Card Box Shadows */
 .gold-box-glow {
-  box-shadow: 0 10px 40px -10px rgba(77, 98, 55, 0.16), 0 25px 50px -20px rgba(35, 46, 28, 0.12);
+  box-shadow: 0 10px 40px -10px rgba(54, 68, 41, 0.20), 0 25px 50px -20px rgba(32, 42, 24, 0.16);
 }
 
 .olive-border-glow {
-  box-shadow: 0 4px 20px -3px rgba(122, 153, 97, 0.25);
+  box-shadow: 0 4px 20px -3px rgba(84, 94, 70, 0.32);
 }
 
 @keyframes floatDust {
@@ -131,10 +135,10 @@ body:-webkit-full-screen {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 14px 0px rgba(93, 121, 70, 0.3);
+    box-shadow: 0 0 14px 0px rgba(84, 94, 70, 0.35);
   }
   50% {
-    box-shadow: 0 0 28px 6px rgba(160, 185, 138, 0.5);
+    box-shadow: 0 0 28px 6px rgba(117, 143, 92, 0.55);
   }
 }
 
@@ -142,33 +146,33 @@ body:-webkit-full-screen {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Luxury Silk Button Styles for Light Mode */
+/* Luxury Silk Button Styles for Authentic Olive Green & Cream */
 .btn-cream-luxury {
-  background: linear-gradient(135deg, #FFFFFF 0%, #F8F4EB 50%, #ECE3D2 100%);
-  color: #23311B;
-  border: 1px solid #C2D2B2;
-  box-shadow: 0 4px 15px -2px rgba(47, 63, 36, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #FBF8F0 0%, #EFE7D8 50%, #E2D5BE 100%);
+  color: #26331C;
+  border: 1px solid #B8A88A;
+  box-shadow: 0 4px 15px -2px rgba(47, 63, 36, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85);
   transition: all 0.25s ease;
 }
 
 .btn-cream-luxury:hover {
   transform: scale(1.02);
-  border-color: #A0B98A;
+  border-color: #545E46;
   box-shadow: 0 8px 22px -3px rgba(47, 63, 36, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .btn-olive-luxury {
-  background: linear-gradient(135deg, #3F522F 0%, #2E3C22 100%);
-  color: #FAF8F5;
-  border: 1px solid #4C6239;
-  box-shadow: 0 6px 20px -3px rgba(35, 49, 27, 0.25);
+  background: linear-gradient(135deg, #4A563C 0%, #364229 100%);
+  color: #F8F4EA;
+  border: 1px solid #5C6A4C;
+  box-shadow: 0 6px 20px -3px rgba(35, 49, 27, 0.28);
   transition: all 0.25s ease;
 }
 
 .btn-olive-luxury:hover {
-  background: linear-gradient(135deg, #4C6339 0%, #364728 100%);
+  background: linear-gradient(135deg, #576547 0%, #404E31 100%);
   transform: scale(1.02);
-  box-shadow: 0 10px 25px -4px rgba(35, 49, 27, 0.35);
+  box-shadow: 0 10px 25px -4px rgba(35, 49, 27, 0.38);
 }
 
 /* Input font size for mobile devices to prevent automatic zoom */

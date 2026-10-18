@@ -1066,7 +1066,7 @@ CREATE POLICY "Allow public all" ON public.guests FOR ALL USING (true);`;
                 Simulating the faint photo background behind the invitation words.
               </p>
 
-              <div className="relative bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#F5EFE6] border-2 border-[#BACBB0] rounded-2xl p-6 text-center text-[#202C1B] overflow-hidden shadow-xl gold-box-glow select-none">
+              <div className="relative bg-gradient-to-b from-[#FAF5EA] via-[#EFE7D8] to-[#E3D6BF] border-2 border-[#545E46]/50 rounded-2xl p-6 text-center text-[#24301C] overflow-hidden shadow-xl gold-box-glow select-none">
                 {/* Background photo with active opacity */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
                   <img
@@ -1075,33 +1075,33 @@ CREATE POLICY "Allow public all" ON public.guests FOR ALL USING (true);`;
                     className="w-full h-full object-cover object-center filter contrast-105"
                     style={{ opacity: bgOpacityInput }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#FAF8F5]/85 via-[#FAF8F5]/70 to-[#FAF8F5]/92" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/85 via-[#EFE7D8]/70 to-[#EFE7D8]/92" />
                 </div>
 
                 {/* Inner border */}
-                <div className="absolute inset-2 border border-[#A0B98A]/35 rounded-xl pointer-events-none z-10" />
+                <div className="absolute inset-2 border border-[#C7B99D] rounded-xl pointer-events-none z-10" />
 
                 <div className="relative z-10 space-y-3">
-                  <div className="w-10 h-10 rounded-full border border-[#7A9961] bg-[#F2F6ED] mx-auto flex items-center justify-center shadow-xs">
-                    <span className="font-wedding text-xl text-[#2B3B22] pt-1 font-bold">T&S</span>
+                  <div className="w-10 h-10 rounded-full border border-[#545E46] bg-[#EFE7D8] mx-auto flex items-center justify-center shadow-xs">
+                    <span className="font-wedding text-lg text-[#26331C] pt-0.5 font-bold">T&S</span>
                   </div>
 
                   <div className="space-y-0.5">
-                    <h3 className="font-wedding text-2xl gold-gradient-text font-bold">{config.partner1 || 'Tinashey Mutandwa'}</h3>
-                    {config.partner1Title ? <p className="font-serif-luxury italic text-[10px] text-[#5D704E]">{config.partner1Title}</p> : null}
-                    <span className="font-wedding text-lg text-[#7A9961] block leading-none font-bold">&</span>
-                    <h3 className="font-wedding text-2xl gold-gradient-text font-bold">{config.partner2 || 'Samukelisiwe Sibanda'}</h3>
-                    {config.partner2Title ? <p className="font-serif-luxury italic text-[10px] text-[#5D704E]">{config.partner2Title}</p> : null}
+                    <h3 className="font-wedding italic text-2xl gold-gradient-text font-semibold">{config.partner1 || 'Tinashey Mutandwa'}</h3>
+                    {config.partner1Title ? <p className="font-serif-luxury italic text-[10px] text-[#545E46]">{config.partner1Title}</p> : null}
+                    <span className="font-wedding italic text-lg text-[#545E46] block leading-none font-normal">&</span>
+                    <h3 className="font-wedding italic text-2xl gold-gradient-text font-semibold">{config.partner2 || 'Samukelisiwe Sibanda'}</h3>
+                    {config.partner2Title ? <p className="font-serif-luxury italic text-[10px] text-[#545E46]">{config.partner2Title}</p> : null}
                   </div>
 
-                  <p className="font-serif-luxury italic text-xs text-[#2B3B22] pt-1">
+                  <p className="font-serif-luxury italic text-xs text-[#364429] pt-1">
                     “Joyfully invite you to celebrate our union in marriage”
                   </p>
 
-                  <div className="pt-2 border-t border-[#BACBB0]/50 space-y-0.5">
-                    <p className="font-cinzel text-xs text-[#1D2615] uppercase font-bold">Monday, 21 December 2026</p>
-                    <p className="font-serif-luxury text-[11px] text-[#5D704E] font-medium">{config.venueName} · 851 Goodhope Road</p>
-                    <p className="font-cinzel text-[10px] text-[#5D704E] tracking-wider uppercase pt-1 font-semibold">Attire: Olive Green & Cream</p>
+                  <div className="pt-2 border-t border-[#C7B99D]/60 space-y-0.5">
+                    <p className="font-cinzel text-xs text-[#1E2817] uppercase font-bold">Monday, 21 December 2026</p>
+                    <p className="font-serif-luxury text-[11px] text-[#545E46] font-medium">{config.venueName} · 851 Goodhope Road</p>
+                    <p className="font-cinzel text-[10px] text-[#545E46] tracking-wider uppercase pt-1 font-semibold">Attire: Olive Green & Cream</p>
                   </div>
 
                   <div className="pt-2">

@@ -11,31 +11,31 @@ export const EventMap: React.FC<EventMapProps> = ({ config }) => {
   )}`;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-16 text-[#202C1B] flex flex-col items-center justify-center">
-      {/* Royal Venue Card - Light Mode Silk Cream & Olive */}
-      <div className="w-full bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#F5EFE6] border-2 border-[#BACBB0] rounded-3xl p-6 sm:p-12 text-center shadow-xl relative overflow-hidden gold-box-glow space-y-6 sm:space-y-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-16 text-[#24301C] flex flex-col items-center justify-center">
+      {/* Royal Venue Card - Authentic Silk Cream & Olive */}
+      <div className="w-full bg-gradient-to-b from-[#FAF5EA] via-[#EFE7D8] to-[#E3D6BF] border-2 border-[#545E46]/50 rounded-3xl p-6 sm:p-12 text-center shadow-xl relative overflow-hidden gold-box-glow space-y-6 sm:space-y-8">
         {/* Ambient Top Glow Line */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#7A9961] to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#545E46] to-transparent" />
 
         {/* Inner Silk Cream Border */}
-        <div className="absolute inset-2.5 sm:inset-4 border border-[#A0B98A]/35 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-2.5 sm:inset-4 border border-[#C7B99D] rounded-2xl pointer-events-none" />
 
         {/* Monogram Crest */}
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-[#7A9961] bg-gradient-to-b from-[#FFFFFF] to-[#F2F6ED] mx-auto flex items-center justify-center shadow-md">
-          <span className="font-wedding text-2xl sm:text-3xl text-[#2B3B22] pt-1 font-bold">T&S</span>
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-[#545E46] bg-gradient-to-b from-[#F7F2E6] to-[#E5DAC4] mx-auto flex items-center justify-center shadow-md">
+          <span className="font-wedding text-2xl sm:text-3xl text-[#26331C] pt-0.5 font-bold">T&S</span>
         </div>
 
         <div className="space-y-3">
-          <p className="font-cinzel text-xs uppercase tracking-[0.3em] text-[#5D704E] font-bold">
+          <p className="font-cinzel text-xs uppercase tracking-[0.3em] text-[#545E46] font-bold">
             Wedding Celebration Venue
           </p>
-          <h1 className="font-serif-luxury text-3xl sm:text-5xl font-bold text-[#1D2615] tracking-wide">
+          <h1 className="font-serif-luxury text-3xl sm:text-5xl font-bold text-[#1E2817] tracking-wide">
             {config.venueName}
           </h1>
-          <p className="font-serif-luxury text-base sm:text-lg text-[#3B4D2B] max-w-md mx-auto font-semibold">
+          <p className="font-serif-luxury text-base sm:text-lg text-[#3B462F] max-w-md mx-auto font-semibold">
             {config.venueAddress}
           </p>
-          <p className="font-serif-luxury italic text-xs sm:text-sm text-[#5D704E] font-medium">
+          <p className="font-serif-luxury italic text-xs sm:text-sm text-[#545E46] font-medium">
             Goodhope · Harare, Zimbabwe
           </p>
         </div>

@@ -328,7 +328,7 @@ export default function App() {
     : '/assets/images/couple_portrait.jpg';
 
   return (
-    <div className="min-h-screen bg-[#F8F5EE] text-[#202C1B] flex flex-col font-sans selection:bg-[#4C6339] selection:text-white safe-pb relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#EFE7D8] text-[#24301C] flex flex-col font-sans selection:bg-[#545E46] selection:text-[#FAF5EA] safe-pb relative overflow-x-hidden">
       {/* Ambient faint couple portrait backdrop - only on guest views */}
       {currentView !== 'gate' && currentView !== 'admin' && (
         <>
@@ -341,7 +341,7 @@ export default function App() {
               backgroundRepeat: 'no-repeat',
             }}
           />
-          <div className="fixed inset-0 bg-gradient-to-b from-[#F8F5EE]/70 via-[#F8F5EE]/85 to-[#F8F5EE] pointer-events-none z-0" />
+          <div className="fixed inset-0 bg-gradient-to-b from-[#EFE7D8]/75 via-[#EFE7D8]/88 to-[#EFE7D8] pointer-events-none z-0" />
         </>
       )}
 
@@ -525,12 +525,12 @@ export default function App() {
         </div>
       )}
 
-      {/* Subtle Wedding Footer in Light Mode */}
-      <footer className="bg-[#F3EFE6] border-t border-[#D9CEBA] py-6 sm:py-8 px-4 text-center text-xs text-stone-600 space-y-2.5 no-print">
-        <p className="font-wedding text-3xl sm:text-5xl text-[#2B3B22] leading-none pt-1">
+      {/* Subtle Wedding Footer in Rich Cream & Olive Green */}
+      <footer className="bg-[#E7DDC7] border-t border-[#C7B99D] py-6 sm:py-8 px-4 text-center text-xs text-[#48533C] space-y-2.5 no-print">
+        <p className="font-wedding italic text-3xl sm:text-5xl text-[#26331C] leading-tight pt-1 font-semibold">
           {config.coupleNames}
         </p>
-        <p className="font-serif-luxury text-stone-600 text-[11px] sm:text-xs tracking-wider">
+        <p className="font-serif-luxury text-[#48533C] text-[11px] sm:text-xs tracking-wider">
           Monday, 21 December 2026 · {config.venueName} · 851 Goodhope Road
         </p>
 
