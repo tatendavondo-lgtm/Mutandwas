@@ -333,7 +333,7 @@ export default function App() {
       {currentView !== 'gate' && currentView !== 'admin' && (
         <>
           <div
-            className="fixed inset-0 pointer-events-none select-none z-0 opacity-10 blur-2xl scale-110"
+            className="fixed inset-0 pointer-events-none select-none z-0 opacity-15 scale-105"
             style={{
               backgroundImage: `url(${currentBackdropUrl})`,
               backgroundPosition: 'center 20%',
@@ -341,7 +341,7 @@ export default function App() {
               backgroundRepeat: 'no-repeat',
             }}
           />
-          <div className="fixed inset-0 bg-gradient-to-b from-[#EFE7D8]/75 via-[#EFE7D8]/88 to-[#EFE7D8] pointer-events-none z-0" />
+          <div className="fixed inset-0 bg-gradient-to-b from-[#EFE7D8]/80 via-[#EFE7D8]/85 to-[#EFE7D8]/92 pointer-events-none z-0" />
         </>
       )}
 

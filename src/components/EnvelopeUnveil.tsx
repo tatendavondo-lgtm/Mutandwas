@@ -86,12 +86,29 @@ export const EnvelopeUnveil: React.FC<EnvelopeUnveilProps> = ({
     }, 550);
   };
 
+  const envelopeBgImage =
+    config.backgroundImageUrl && !config.backgroundImageUrl.includes('aistudio.google.com')
+      ? config.backgroundImageUrl
+      : '/assets/images/couple_portrait.jpg';
+
   return (
     <div
       onClick={handleOpenEnvelope}
       onTouchEnd={handleOpenEnvelope}
       className="fixed inset-0 z-50 bg-[#F8F5EE] flex items-center justify-center p-4 select-none overflow-hidden safe-pb safe-pt cursor-pointer"
     >
+      {/* Faint couple backdrop across envelope unveil screen */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-0 opacity-15"
+        style={{
+          backgroundImage: `url(${envelopeBgImage})`,
+          backgroundPosition: 'center 35%',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      <div className="absolute inset-0 bg-[#F8F5EE]/82 pointer-events-none z-0" />
+
       {/* Background ambient lighting */}
       <div className="absolute inset-0 bg-radial from-[#A0B98A]/25 via-transparent to-transparent pointer-events-none" />
 
@@ -105,14 +122,15 @@ export const EnvelopeUnveil: React.FC<EnvelopeUnveilProps> = ({
           isOpening ? 'scale-105 opacity-0 -translate-y-8' : 'scale-100 opacity-100 translate-y-0'
         }`}
       >
-        {/* Faint Couple Backdrop inside Envelope */}
+        {/* Faint Couple Backdrop inside Envelope Card */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
           <img
-            src={config.backgroundImageUrl && !config.backgroundImageUrl.includes('aistudio.google.com') ? config.backgroundImageUrl : '/assets/images/couple_portrait.jpg'}
-            alt={config.coupleNames}
-            className="w-full h-full object-cover object-center opacity-10 filter blur-[0.5px] scale-105"
+            src={envelopeBgImage}
+            alt="Tinashey & Samkee"
+            className="w-full h-full object-cover object-center scale-105"
+            style={{ opacity: 0.18 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/90 via-[#EFE7D8]/80 to-[#EFE7D8]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/85 via-[#EFE7D8]/75 to-[#E3D6BF]/85" />
         </div>
 
         {/* Inner border */}
@@ -158,7 +176,7 @@ export const EnvelopeUnveil: React.FC<EnvelopeUnveilProps> = ({
           {/* Couple Title */}
           <div className="space-y-1 mb-8">
             <h2 className="font-wedding italic text-3xl sm:text-4xl text-[#24301C] tracking-wide leading-tight font-semibold">
-              {config.coupleNames}
+              Tinashey & Samkee
             </h2>
             <p className="font-serif-luxury text-xs text-[#545E46] tracking-wider font-medium">
               {config.venueName} · 851 Goodhope Road
