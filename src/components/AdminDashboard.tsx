@@ -909,11 +909,11 @@ CREATE POLICY "Allow public all" ON public.guests FOR ALL USING (true);`;
                     <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#1A1A24] mb-2">
                       <img
                         src="/assets/images/couple_portrait.jpg"
-                        alt="Tinashe & Samukelisiwe"
+                        alt="Tinashey & Samukelisiwe"
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
-                    <p className="text-xs font-semibold text-stone-900 truncate">Tinashe & Samukelisiwe</p>
+                    <p className="text-xs font-semibold text-stone-900 truncate">Tinashey & Samukelisiwe</p>
                     <p className="text-[10px] text-stone-600">Official Portrait (Active)</p>
                   </div>
 
@@ -1087,7 +1087,7 @@ CREATE POLICY "Allow public all" ON public.guests FOR ALL USING (true);`;
                   </div>
 
                   <div className="space-y-0.5">
-                    <h3 className="font-wedding text-2xl gold-gradient-text font-bold">{config.partner1 || 'Tinashe Mutandwa'}</h3>
+                    <h3 className="font-wedding text-2xl gold-gradient-text font-bold">{config.partner1 || 'Tinashey Mutandwa'}</h3>
                     {config.partner1Title ? <p className="font-serif-luxury italic text-[10px] text-[#5D704E]">{config.partner1Title}</p> : null}
                     <span className="font-wedding text-lg text-[#7A9961] block leading-none font-bold">&</span>
                     <h3 className="font-wedding text-2xl gold-gradient-text font-bold">{config.partner2 || 'Samukelisiwe Sibanda'}</h3>

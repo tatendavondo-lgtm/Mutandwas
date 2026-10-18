@@ -143,24 +143,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
                       />
 
                       {/* Glass Sheen Light Reflection Sweep */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/25 opacity-60 pointer-events-none" />
-
-                      {/* Subtle Vignette */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent via-45% to-transparent pointer-events-none" />
-
-                      {/* Floating Flowery Museum Plaque at the Bottom */}
-                      <div className="absolute bottom-3 left-3 right-3 py-2 px-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#BACBB0] shadow-md text-center pointer-events-none transform transition-transform duration-500 group-hover:-translate-y-0.5">
-                        <div className="flex items-center justify-center gap-1.5 text-[#5D7946] text-xs">
-                          <span>❀</span>
-                          <span className="font-wedding text-2xl sm:text-3xl text-[#202C1B] tracking-wide leading-none pt-0.5 font-bold">
-                            {config.coupleNames}
-                          </span>
-                          <span>❀</span>
-                        </div>
-                        <span className="font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#5D704E] font-bold block pt-1">
-                          The Mutandwa Union
-                        </span>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 opacity-50 pointer-events-none" />
                     </div>
                   </div>
                 </div>
@@ -203,7 +186,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
             {/* Groom */}
             <div className="space-y-0.5 sm:space-y-1">
               <h1 className="font-wedding text-4xl xs:text-5xl sm:text-7xl lg:text-8xl gold-gradient-text tracking-wide leading-[1.1] drop-shadow-xs break-words">
-                {config.partner1 || 'Tinashe Mutandwa'}
+                {config.partner1 || 'Tinashey Mutandwa'}
               </h1>
               {config.partner1Title ? (
                 <p className="font-serif-luxury italic text-xs sm:text-sm text-[#5D704E] tracking-wider">

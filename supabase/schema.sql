@@ -1,5 +1,5 @@
 -- ==============================================================================
--- TINASHE & SAMUKELISIWE WEDDING — COMPLETE DATABASE RESET SCRIPT
+-- TINASHEY & SAMUKELISIWE WEDDING — COMPLETE DATABASE RESET SCRIPT
 -- Completely wipes all test data, drops old tables, and starts 100% fresh
 -- Run in Supabase SQL Editor: https://supabase.com/dashboard/project/ydkqnpcuyshaidcuzdik/sql
 -- ==============================================================================
@@ -52,7 +52,7 @@ CREATE INDEX idx_activity_logs_timestamp ON public.activity_logs(timestamp DESC)
 -- 4. CREATE WEDDING CONFIGURATION TABLE
 CREATE TABLE public.wedding_config (
   id TEXT PRIMARY KEY DEFAULT 'default',
-  couple_names TEXT NOT NULL DEFAULT 'Tinashe Mutandwa & Samukelisiwe Sibanda',
+  couple_names TEXT NOT NULL DEFAULT 'Tinashey Mutandwa & Samukelisiwe Sibanda',
   wedding_date TIMESTAMPTZ NOT NULL DEFAULT '2026-12-21T00:00:00Z',
   venue_name TEXT NOT NULL DEFAULT 'Life Celebrations Center',
   venue_address TEXT NOT NULL DEFAULT '851 Goodhope Road, Harare',
@@ -91,7 +91,7 @@ INSERT INTO public.wedding_config (
   id, couple_names, wedding_date, venue_name, venue_address, venue_capacity, gate_pin
 ) VALUES (
   'default',
-  'Tinashe Mutandwa & Samukelisiwe Sibanda',
+  'Tinashey Mutandwa & Samukelisiwe Sibanda',
   '2026-12-21T00:00:00Z',
   'Life Celebrations Center',
   '851 Goodhope Road, Harare',

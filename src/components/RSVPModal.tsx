@@ -184,7 +184,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
             Wedding RSVP Confirmation
           </p>
           <h2 className="font-wedding text-4xl sm:text-5xl font-bold text-[#1D2615] leading-tight">
-            Tinashe & Samukelisiwe
+            Tinashey & Samukelisiwe
           </h2>
           <p className="text-xs font-serif-luxury text-[#5D704E] font-medium">
             Life Celebrations Center · Monday, 21 December 2026
@@ -257,7 +257,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     setServerErrors((prev) => ({ ...prev, name: '' }));
                   }
                 }}
-                placeholder="e.g. Mr. & Mrs. Tinashe Moyo"
+                placeholder="e.g. Mr. & Mrs. T. Moyo"
                 className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
                   serverErrors.name
                     ? 'border-rose-400 focus:border-rose-500'
@@ -532,7 +532,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
           {/* Personal Note to Couple */}
           <div className="space-y-1">
             <label className="block text-xs font-semibold text-[#3B4D2B]">
-              Congratulatory Message to Tinashe & Samukelisiwe (Optional)
+              Congratulatory Message to Tinashey & Samukelisiwe (Optional)
             </label>
             <textarea
               rows={2}

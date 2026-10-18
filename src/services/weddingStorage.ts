@@ -19,14 +19,17 @@ export const STORAGE_KEYS = {
   ACTIVITY: 'aura_vows_activity_v8',
 };
 
-// Clean legacy test caches automatically so users start fresh with Tinashe & Samukelisiwe
+// Clean legacy test caches automatically so users start fresh with Tinashey & Samukelisiwe
 if (typeof window !== 'undefined') {
   try {
-    const oldCfg = localStorage.getItem('aura_vows_config_v7');
-    if (oldCfg && (oldCfg.includes('Blessing') || oldCfg.includes('Ruvarashe'))) {
+    const oldCfg = localStorage.getItem('aura_vows_config_v7') || localStorage.getItem('aura_vows_config_v8');
+    if (oldCfg && (oldCfg.includes('Blessing') || oldCfg.includes('Ruvarashe') || (oldCfg.includes('Tinashe') && !oldCfg.includes('Tinashey')))) {
       localStorage.removeItem('aura_vows_config_v7');
       localStorage.removeItem('aura_vows_guests_v7');
       localStorage.removeItem('aura_vows_activity_v7');
+      localStorage.removeItem('aura_vows_config_v8');
+      localStorage.removeItem('aura_vows_guests_v8');
+      localStorage.removeItem('aura_vows_activity_v8');
     }
     localStorage.removeItem('aura_vows_guests_v5');
     localStorage.removeItem('aura_vows_activity_v5');
@@ -103,7 +106,9 @@ export function getWeddingConfig(): WeddingConfig {
         parsed.backgroundImageUrl.includes('blessing_ruvarashe') ||
         parsed.backgroundImageUrl.includes('wedding_couple_portrait') ||
         parsed.coupleNames?.includes('Blessing') ||
-        parsed.venueName?.includes('Swan Creek')
+        parsed.venueName?.includes('Swan Creek') ||
+        (parsed.partner1 && parsed.partner1.includes('Tinashe') && !parsed.partner1.includes('Tinashey')) ||
+        (parsed.coupleNames && parsed.coupleNames.includes('Tinashe') && !parsed.coupleNames.includes('Tinashey'))
       ) {
         return INITIAL_WEDDING_CONFIG;
       }

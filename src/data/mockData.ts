@@ -1,8 +1,8 @@
 import { Guest, VenueZone, WeddingConfig, ActivityLogItem } from '../types/wedding';
 
 export const INITIAL_WEDDING_CONFIG: WeddingConfig = {
-  coupleNames: 'Tinashe Mutandwa & Samukelisiwe Sibanda',
-  partner1: 'Tinashe Mutandwa',
+  coupleNames: 'Tinashey Mutandwa & Samukelisiwe Sibanda',
+  partner1: 'Tinashey Mutandwa',
   partner1Title: '',
   partner2: 'Samukelisiwe Sibanda',
   partner2Title: '',
@@ -16,7 +16,7 @@ export const INITIAL_WEDDING_CONFIG: WeddingConfig = {
   adminPin: '9172',
   attire: 'Olive Green & Cream',
   specialInstructions: 'Adults only, strictly no kids & strictly by invitation',
-  contactEmail: 'rsvp@tinasheandsamukelisiwe.com',
+  contactEmail: 'rsvp@tinasheyandsamukelisiwe.com',
   contactPhone: '+263 77 245 8891',
   backgroundImageUrl: '/assets/images/couple_portrait.jpg',
   backgroundOpacity: 0.22,

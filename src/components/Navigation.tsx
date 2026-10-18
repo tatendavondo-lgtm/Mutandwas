@@ -72,7 +72,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={onOpenStaffModal}
-            title={config?.coupleNames || "Tinashe & Samukelisiwe"}
+            title={config?.coupleNames || "Tinashey & Samukelisiwe"}
             aria-label="Staff Access Portal"
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#7A9961]/70 bg-[#F2F6ED] hover:bg-[#E5EDDC] active:scale-95 flex items-center justify-center shadow-xs cursor-pointer transition-all focus:outline-none"
           >
@@ -85,7 +85,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             className="text-left group cursor-pointer focus-visible:outline-none flex flex-col"
           >
             <span className="font-wedding text-2xl sm:text-4xl text-[#202C1B] group-hover:text-[#4C6239] transition-colors whitespace-nowrap leading-none pt-1">
-              {config?.coupleNames || 'Tinashe & Samukelisiwe'}
+              {config?.coupleNames || 'Tinashey & Samukelisiwe'}
             </span>
             <span className="font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-[#5D704E] hidden xs:block font-medium">
               21 December 2026
