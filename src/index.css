@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+  --font-script: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
+  --font-wedding: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Olive Green & Silk Cream Luxury Palette */
+  --color-cream-50: #FDFBF7;
+  --color-cream-100: #F8F3EA;
+  --color-cream-200: #EFE6D5;
+  --color-cream-300: #E5D9C3;
+  --color-cream-400: #D9CBB2;
+  --color-cream-500: #C4B294;
+
+  --color-olive-50: #F2F5ED;
+  --color-olive-100: #DFE7D6;
+  --color-olive-200: #C2D2B2;
+  --color-olive-300: #A0B98A;
+  --color-olive-400: #7A9961;
+  --color-olive-500: #5D7946;
+  --color-olive-600: #4B6237;
+  --color-olive-700: #3B4D2B;
+  --color-olive-800: #2C3A20;
+  --color-olive-900: #1D2615;
+  --color-olive-950: #12190D;
+
+  /* Legacy mapping mapped to Olive & Cream */
+  --color-champagne-50: #FDFBF7;
+  --color-champagne-100: #F8F3EA;
+  --color-champagne-200: #EFE6D5;
+  --color-champagne-300: #E5D9C3;
+  --color-champagne-400: #D9CBB2;
+  --color-champagne-500: #8DA579;
+  --color-champagne-600: #5D704E;
+  --color-champagne-700: #3B4D2B;
+
+  --color-obsidian-950: #0E150C;
+  --color-obsidian-900: #141D12;
+  --color-obsidian-850: #1A2617;
+  --color-obsidian-800: #233220;
+}
+
+html, body {
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: #F8F5EE;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(160, 185, 138, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(229, 217, 195, 0.45) 0%, transparent 70%);
+  color: #202C1B;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent unwanted mobile horizontal drift */
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+html:fullscreen,
+html:-webkit-full-screen,
+body:fullscreen,
+body:-webkit-full-screen {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  width: 100%;
+  height: 100%;
+  background-color: #F8F5EE;
+}
+
+/* Safe area insets for notched phones */
+.safe-pb {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.safe-pt {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+.font-script,
+.font-wedding {
+  font-family: "Pinyon Script", "Great Vibes", "Alex Brush", cursive;
+}
+
+.font-serif-luxury {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+
+/* Shimmering Olive Silk Text for Light Mode */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #182413 0%, #2F3F24 35%, #4C6239 70%, #23311B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Olive Green & Silk Cream Card Box Shadows for Light Mode */
+.gold-box-glow {
+  box-shadow: 0 10px 40px -10px rgba(77, 98, 55, 0.16), 0 25px 50px -20px rgba(35, 46, 28, 0.12);
+}
+
+.olive-border-glow {
+  box-shadow: 0 4px 20px -3px rgba(122, 153, 97, 0.25);
+}
+
+@keyframes floatDust {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-12px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+.animate-dust {
+  animation: floatDust 7s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 14px 0px rgba(93, 121, 70, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 28px 6px rgba(160, 185, 138, 0.5);
+  }
+}
+
+.animate-seal-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Luxury Silk Button Styles for Light Mode */
+.btn-cream-luxury {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F4EB 50%, #ECE3D2 100%);
+  color: #23311B;
+  border: 1px solid #C2D2B2;
+  box-shadow: 0 4px 15px -2px rgba(47, 63, 36, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.25s ease;
+}
+
+.btn-cream-luxury:hover {
+  transform: scale(1.02);
+  border-color: #A0B98A;
+  box-shadow: 0 8px 22px -3px rgba(47, 63, 36, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.btn-olive-luxury {
+  background: linear-gradient(135deg, #3F522F 0%, #2E3C22 100%);
+  color: #FAF8F5;
+  border: 1px solid #4C6239;
+  box-shadow: 0 6px 20px -3px rgba(35, 49, 27, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-olive-luxury:hover {
+  background: linear-gradient(135deg, #4C6339 0%, #364728 100%);
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px -4px rgba(35, 49, 27, 0.35);
+}
+
+/* Input font size for mobile devices to prevent automatic zoom */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

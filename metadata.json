@@ -1,0 +1,6 @@
+{
+  "name": "Aura Vows - Digital Invitation & Gate Check-in",
+  "description": "Luxury digital wedding invitation with personalized RSVP links, single-use QR gate passes, registry, interactive venue map, PIN-locked security scanner, and real-time attendance dashboard.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
