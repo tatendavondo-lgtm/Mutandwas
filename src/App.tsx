@@ -7,6 +7,8 @@ import {
   getActivityLogs,
   subscribeRealTime,
   STORAGE_KEYS,
+  getDeviceRegisteredGuest,
+  setDeviceRegisteredGuest,
 } from './services/weddingStorage';
 import {
   isSupabaseConfigured,
@@ -35,8 +37,10 @@ export default function App() {
     'invitation' | 'map' | 'pass' | 'gate' | 'admin'
   >('invitation');
 
-  // Currently viewed guest (for personalized link or pass preview)
-  const [activeGuest, setActiveGuest] = useState<Guest | null>(null);
+  // Currently viewed guest (for personalized link or pass preview; remembered on this device)
+  const [activeGuest, setActiveGuest] = useState<Guest | null>(() => {
+    return getDeviceRegisteredGuest();
+  });
 
   // Envelope Unveil state (triggers native mobile fullscreen on guest tap)
   const [isEnvelopeOpened, setIsEnvelopeOpened] = useState<boolean>(() => {
@@ -96,20 +100,13 @@ export default function App() {
           console.error(e);
         }
         setActiveGuest((prev) => {
-          if (!prev) return null;
-          const updated = cloudGuests.find((g) => g.id === prev.id);
-          if (!updated) return null;
-          if (
-            prev.name === updated.name &&
-            prev.email === updated.email &&
-            prev.phone === updated.phone &&
-            prev.rsvpStatus === updated.rsvpStatus &&
-            prev.checkInStatus === updated.checkInStatus &&
-            prev.confirmedHeadcount === updated.confirmedHeadcount &&
-            prev.inviteCode === updated.inviteCode
-          ) {
-            return prev;
-          }
+          const current = prev || getDeviceRegisteredGuest();
+          if (!current) return null;
+          const updated = cloudGuests.find(
+            (g) => g.id === current.id || (current.ticketCode && g.ticketCode === current.ticketCode)
+          );
+          if (!updated) return current;
+          setDeviceRegisteredGuest(updated);
           return updated;
         });
       } else {
@@ -266,7 +263,7 @@ export default function App() {
     }
   }, []);
 
-  // Resolve guest/token parameter when guest list updates
+  // Resolve guest/token parameter when guest list updates or from device storage
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const guestParam = params.get('token') || params.get('guest') || params.get('invite');
@@ -279,12 +276,36 @@ export default function App() {
       );
       if (found) {
         setActiveGuest(found);
+        setDeviceRegisteredGuest(found);
+        return;
+      }
+    }
+
+    // If no query parameter, check if this device has already registered an RSVP
+    const deviceSaved = getDeviceRegisteredGuest();
+    if (deviceSaved) {
+      if (allGuests.length > 0) {
+        const foundInList = allGuests.find(
+          (g) => g.id === deviceSaved.id || (deviceSaved.ticketCode && g.ticketCode === deviceSaved.ticketCode)
+        );
+        if (foundInList) {
+          setActiveGuest(foundInList);
+          setDeviceRegisteredGuest(foundInList);
+        } else {
+          setActiveGuest(deviceSaved);
+        }
+      } else {
+        setActiveGuest(deviceSaved);
       }
     }
   }, [allGuests]);
 
   const handleOpenPass = (guest?: Guest) => {
-    setPassTargetGuest(guest || activeGuest);
+    const target = guest || activeGuest || getDeviceRegisteredGuest();
+    if (target) {
+      setActiveGuest(target);
+      setPassTargetGuest(target);
+    }
     setIsPassOpen(true);
   };
 
@@ -454,14 +475,26 @@ export default function App() {
         onClose={() => setIsRSVPOpen(false)}
         onRSVPSaved={(updated) => {
           setActiveGuest(updated);
+          setDeviceRegisteredGuest(updated);
+          setPassTargetGuest(updated);
+          try {
+            const url = new URL(window.location.href);
+            url.searchParams.set('guest', updated.inviteCode || updated.ticketCode);
+            window.history.replaceState({}, '', url.toString());
+          } catch {}
           refreshData();
         }}
-        onOpenPass={(savedGuest) => handleOpenPass(savedGuest)}
+        onOpenPass={(savedGuest) => {
+          setActiveGuest(savedGuest);
+          setDeviceRegisteredGuest(savedGuest);
+          setPassTargetGuest(savedGuest);
+          setIsPassOpen(true);
+        }}
       />
 
       {/* Digital QR Entry Pass Modal */}
       <QRPassModal
-        guest={passTargetGuest || activeGuest}
+        guest={passTargetGuest || activeGuest || getDeviceRegisteredGuest()}
         config={config}
         isOpen={isPassOpen}
         onClose={() => setIsPassOpen(false)}

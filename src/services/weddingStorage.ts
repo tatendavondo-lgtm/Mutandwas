@@ -17,6 +17,7 @@ export const STORAGE_KEYS = {
   GUESTS: 'aura_vows_guests_v8',
   CONFIG: 'aura_vows_config_v8',
   ACTIVITY: 'aura_vows_activity_v8',
+  DEVICE_GUEST: 'aura_vows_device_guest_v8',
 };
 
 // Clean legacy test caches automatically so users start fresh with Tinashey & Samukelisiwe
@@ -138,6 +139,31 @@ export function getGuests(): Guest[] {
 }
 
 /**
+ * Remember the registered guest on this device so returning visitors instantly see their pass
+ */
+export function getDeviceRegisteredGuest(): Guest | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.DEVICE_GUEST);
+    if (raw) return JSON.parse(raw);
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+export function setDeviceRegisteredGuest(guest: Guest | null) {
+  try {
+    if (guest) {
+      localStorage.setItem(STORAGE_KEYS.DEVICE_GUEST, JSON.stringify(guest));
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.DEVICE_GUEST);
+    }
+  } catch {
+    // ignore
+  }
+}
+
+/**
  * Save guests to localStorage and broadcast across tabs.
  * Never bulk-overwrites Supabase unless syncAllToCloud is explicitly true.
  */
@@ -248,6 +274,7 @@ export function submitGuestSelfRSVP(data: {
   }
 
   saveGuests(guests);
+  setDeviceRegisteredGuest(finalGuest);
   void upsertSingleGuestToSupabase(finalGuest);
 
   logActivity({

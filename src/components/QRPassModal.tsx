@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode';
 import { Guest, WeddingConfig } from '../types/wedding';
+import { getDeviceRegisteredGuest } from '../services/weddingStorage';
 
 interface QRPassModalProps {
   guest: Guest | null;
@@ -21,11 +22,12 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
   const [showQrBackup, setShowQrBackup] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
-  const isConfirmed = !!guest && guest.rsvpStatus === 'accepted';
+  const currentGuest = guest || getDeviceRegisteredGuest();
+  const isConfirmed = !!currentGuest && currentGuest.rsvpStatus === 'accepted';
 
   React.useEffect(() => {
-    if (!guest || !isConfirmed) return;
-    const cleanCode = guest.ticketCode.replace(/\D/g, '') || guest.ticketCode;
+    if (!currentGuest || !isConfirmed) return;
+    const cleanCode = currentGuest.ticketCode.replace(/\D/g, '') || currentGuest.ticketCode;
 
     QRCode.toDataURL(
       cleanCode,
@@ -43,7 +45,7 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
         }
       }
     );
-  }, [guest, isConfirmed]);
+  }, [currentGuest, isConfirmed]);
 
   if (!isOpen) return null;
 
@@ -101,13 +103,13 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
               </p>
             </div>
 
-            {guest?.name && (
+            {currentGuest?.name && (
               <div className="bg-[#F5EEDB] border border-[#C7B99D] rounded-xl p-3.5 text-xs text-[#2E3A24] space-y-1">
                 <span className="font-cinzel uppercase text-[10px] tracking-widest text-[#545E46] font-bold block">
                   Invitation Status
                 </span>
                 <p className="font-serif-luxury text-sm font-semibold">
-                  Guest: <strong className="text-[#1D2615]">{guest.name}</strong>
+                  Guest: <strong className="text-[#1D2615]">{currentGuest.name}</strong>
                 </p>
                 <p className="text-[11px] text-[#545E46]">
                   Status: <span className="uppercase font-bold tracking-wider">{isDeclined ? 'Declined' : 'Pending RSVP'}</span>
@@ -140,8 +142,8 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
     );
   }
 
-  const isCheckedIn = guest.checkInStatus === 'checked_in';
-  const cleanCode = guest.ticketCode.replace(/\D/g, '') || guest.ticketCode;
+  const isCheckedIn = currentGuest.checkInStatus === 'checked_in';
+  const cleanCode = currentGuest.ticketCode.replace(/\D/g, '') || currentGuest.ticketCode;
   const digits = cleanCode.padStart(4, '0').slice(-4).split('');
 
   const handleCopyCode = () => {
@@ -194,16 +196,16 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
                   Guest of Honour
                 </span>
                 <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#1D2615] leading-tight">
-                  {guest.name}
+                  {currentGuest.name}
                 </h4>
-                {guest.plusOneName && (
+                {currentGuest.plusOneName && (
                   <p className="text-xs text-[#5D704E] mt-0.5">
-                    with guest: <span className="font-semibold text-[#1D2615]">{guest.plusOneName}</span>
+                    with guest: <span className="font-semibold text-[#1D2615]">{currentGuest.plusOneName}</span>
                   </p>
                 )}
               </div>
 
-              {guest.isVIP && (
+              {currentGuest.isVIP && (
                 <span className="bg-[#EAF0E4] text-[#2B3B22] border border-[#BACBB0] px-2.5 py-0.5 rounded text-[10px] font-mono tracking-wider uppercase font-bold">
                   VIP Guest
                 </span>
@@ -216,7 +218,7 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
                   Admitted Capacity
                 </span>
                 <span className="font-bold text-[#1D2615] block">
-                  {guest.confirmedHeadcount || guest.partySize} {guest.confirmedHeadcount > 1 ? 'Seats' : 'Seat'} Reserved
+                  {currentGuest.confirmedHeadcount || currentGuest.partySize} {currentGuest.confirmedHeadcount > 1 ? 'Seats' : 'Seat'} Reserved
                 </span>
                 <span className="text-[11px] text-[#5D704E] block font-medium">
                   Adults Only
@@ -228,7 +230,7 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
                   Dietary Request
                 </span>
                 <span className="font-bold text-[#1D2615] block truncate">
-                  {guest.dietaryRequirements}
+                  {currentGuest.dietaryRequirements}
                 </span>
                 <span className="text-[11px] text-[#5D704E] block font-medium">
                   Wedding Banquet
@@ -284,7 +286,7 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
               <span className={`w-2 h-2 rounded-full ${isCheckedIn ? 'bg-emerald-500' : 'bg-[#5D7946] animate-pulse'}`} />
               <span>
                 {isCheckedIn
-                  ? `Checked In at ${guest.checkInTime ? new Date(guest.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''} (${guest.checkedInBy || 'Gate'})`
+                  ? `Checked In at ${currentGuest.checkInTime ? new Date(currentGuest.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''} (${currentGuest.checkedInBy || 'Gate'})`
                   : 'Valid For Single-Use Gate Entry'}
               </span>
             </div>
