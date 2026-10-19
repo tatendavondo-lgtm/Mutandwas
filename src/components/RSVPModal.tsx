@@ -188,7 +188,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
             </p>
             <p className="text-[#3B4D2B] text-xs">
               This personalized invitation token was already used to register attendance for{' '}
-              <strong className="text-[#1D2615] font-bold">{guest.name}</strong> ({guest.confirmedHeadcount} guests). It cannot be reused or transferred.
+              <strong className="text-[#1D2615] font-bold">{guest.name}</strong>. It cannot be reused or transferred.
             </p>
             {guest.rsvpStatus === 'accepted' && (
               <button

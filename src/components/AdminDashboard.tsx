@@ -136,7 +136,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     navigator.clipboard.writeText(url);
     onRefreshData();
     alert(
-      `✓ New Single-Use Invite Token Generated!\n\nLink copied to clipboard:\n${url}\n\n• Each time you click this button, a BRAND NEW link with a unique token is created.\n• Send this to 1 individual. They will fill in their own name and can RSVP for a MAXIMUM of 2 guests.\n• Once used, it is permanently locked and cannot be forwarded or reused.`
+      `✓ New Single-Use Invite Token Generated!\n\nLink copied to clipboard:\n${url}\n\n• Each time you click this button, a BRAND NEW link with a unique token is created.\n• Send this to 1 individual. They will fill in their name and confirm RSVP.\n• Once used, it is permanently locked and cannot be forwarded or reused.`
     );
   };
 
@@ -219,21 +219,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             onClick={() => {
               const url = `${window.location.origin}${window.location.pathname}?type=family`;
               navigator.clipboard.writeText(url);
-              alert('Copied Family Group RSVP Link:\n' + url + '\n\nSend this open link to both family WhatsApp/SMS groups. Anyone can RSVP with up to 4 guests!');
+              alert('Copied Family Group RSVP Link:\n' + url + '\n\nSend this open link to family WhatsApp/SMS groups. Anyone opening this link can RSVP!');
             }}
             className="px-3.5 py-2 btn-cream-luxury font-bold rounded-lg text-xs shadow-xs transition-all cursor-pointer flex items-center gap-1.5"
           >
             <span>👨‍👩‍👧‍👦</span>
-            <span>Copy Family Group Link (Max 4)</span>
+            <span>Copy Family Group Link</span>
           </button>
 
           <button
             onClick={handleGenerateAndCopyNewToken}
             className="px-3.5 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-lg shadow-sm text-xs font-semibold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
-            title="Generates a brand new single-use token link each time you click. Guests fill in their own names (Max 2 seats)."
+            title="Generates a brand new single-use token link each time you click. The guest fills in their name and the link locks once used."
           >
             <span>🔒</span>
-            <span>+ Copy New Single-Use Link (Max 2)</span>
+            <span>+ Copy New Single-Use Link</span>
           </button>
 
           <button
