@@ -329,19 +329,20 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#EFE7D8] text-[#24301C] flex flex-col font-sans selection:bg-[#545E46] selection:text-[#FAF5EA] safe-pb relative overflow-x-hidden">
-      {/* Ambient faint couple portrait backdrop - only on guest views */}
+      {/* Visible romantic couple backdrop across the entire page */}
       {currentView !== 'gate' && currentView !== 'admin' && (
         <>
           <div
-            className="fixed inset-0 pointer-events-none select-none z-0 opacity-15 scale-105"
+            className="fixed inset-0 pointer-events-none select-none z-0 scale-105"
             style={{
               backgroundImage: `url(${currentBackdropUrl})`,
               backgroundPosition: 'center 20%',
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
+              opacity: 0.30,
             }}
           />
-          <div className="fixed inset-0 bg-gradient-to-b from-[#EFE7D8]/80 via-[#EFE7D8]/85 to-[#EFE7D8]/92 pointer-events-none z-0" />
+          <div className="fixed inset-0 bg-gradient-to-b from-[#EFE7D8]/60 via-[#EFE7D8]/70 to-[#EFE7D8]/80 pointer-events-none z-0" />
         </>
       )}
 

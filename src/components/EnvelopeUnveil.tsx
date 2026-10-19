@@ -97,17 +97,18 @@ export const EnvelopeUnveil: React.FC<EnvelopeUnveilProps> = ({
       onTouchEnd={handleOpenEnvelope}
       className="fixed inset-0 z-50 bg-[#F8F5EE] flex items-center justify-center p-4 select-none overflow-hidden safe-pb safe-pt cursor-pointer"
     >
-      {/* Faint couple backdrop across envelope unveil screen */}
+      {/* Visible couple backdrop across envelope unveil screen */}
       <div
-        className="absolute inset-0 pointer-events-none select-none z-0 opacity-15"
+        className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
           backgroundImage: `url(${envelopeBgImage})`,
-          backgroundPosition: 'center 35%',
+          backgroundPosition: 'center 30%',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
+          opacity: 0.35,
         }}
       />
-      <div className="absolute inset-0 bg-[#F8F5EE]/82 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-radial from-[#F8F5EE]/45 via-[#F8F5EE]/65 to-[#EFE7D8]/80 pointer-events-none z-0" />
 
       {/* Background ambient lighting */}
       <div className="absolute inset-0 bg-radial from-[#A0B98A]/25 via-transparent to-transparent pointer-events-none" />
@@ -118,19 +119,19 @@ export const EnvelopeUnveil: React.FC<EnvelopeUnveilProps> = ({
 
       {/* Royal Silk Cream Envelope Card */}
       <div
-        className={`w-full max-w-sm sm:max-w-md bg-gradient-to-b from-[#FAF5EA] via-[#EFE7D8] to-[#E3D6BF] border-2 border-[#545E46]/50 rounded-3xl p-7 sm:p-10 text-center text-[#24301C] shadow-2xl relative transition-all duration-700 gold-box-glow overflow-hidden cursor-pointer ${
+        className={`w-full max-w-sm sm:max-w-md bg-gradient-to-b from-[#FAF5EA]/90 via-[#EFE7D8]/85 to-[#E3D6BF]/90 border-2 border-[#545E46]/50 rounded-3xl p-7 sm:p-10 text-center text-[#24301C] shadow-2xl relative transition-all duration-700 gold-box-glow overflow-hidden cursor-pointer ${
           isOpening ? 'scale-105 opacity-0 -translate-y-8' : 'scale-100 opacity-100 translate-y-0'
         }`}
       >
-        {/* Faint Couple Backdrop inside Envelope Card */}
+        {/* Visible Couple Backdrop inside Envelope Card */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
           <img
             src={envelopeBgImage}
             alt="Tinashey & Samkee"
             className="w-full h-full object-cover object-center scale-105"
-            style={{ opacity: 0.18 }}
+            style={{ opacity: 0.38 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/85 via-[#EFE7D8]/75 to-[#E3D6BF]/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/50 via-[#EFE7D8]/40 to-[#E3D6BF]/55" />
         </div>
 
         {/* Inner border */}

@@ -32,15 +32,15 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
 
       {/* Royal Wedding Invitation Card - Authentic Silk Cream & Botanical Olive Green */}
       <section className="relative bg-gradient-to-b from-[#FAF5EA] via-[#EFE7D8] to-[#E3D7C1] border-2 border-[#545E46]/50 rounded-2xl sm:rounded-3xl gold-box-glow p-4 xs:p-6 sm:p-12 text-center text-[#24301C] overflow-hidden shadow-2xl">
-        {/* Faint Couple Photographic Watermark Backdrop */}
+        {/* Visible Couple Photographic Backdrop */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
           <img
             src={bgImage}
             alt={config.coupleNames}
             className="w-full h-full object-cover object-center scale-105"
-            style={{ opacity: 0.16 }}
+            style={{ opacity: 0.35 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/85 via-[#EFE7D8]/75 to-[#E3D7C1]/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EA]/50 via-[#EFE7D8]/40 to-[#E3D7C1]/55" />
         </div>
 
         {/* Inner Delicate Inset Silk Cream Hairline Border */}
