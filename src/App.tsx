@@ -477,11 +477,6 @@ export default function App() {
           setActiveGuest(updated);
           setDeviceRegisteredGuest(updated);
           setPassTargetGuest(updated);
-          try {
-            const url = new URL(window.location.href);
-            url.searchParams.set('guest', updated.inviteCode || updated.ticketCode);
-            window.history.replaceState({}, '', url.toString());
-          } catch {}
           refreshData();
         }}
         onOpenPass={(savedGuest) => {
