@@ -7,6 +7,7 @@ interface QRPassModalProps {
   config: WeddingConfig;
   isOpen: boolean;
   onClose: () => void;
+  onOpenRSVP?: () => void;
 }
 
 export const QRPassModal: React.FC<QRPassModalProps> = ({
@@ -14,13 +15,16 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
   config,
   isOpen,
   onClose,
+  onOpenRSVP,
 }) => {
   const [copied, setCopied] = useState(false);
   const [showQrBackup, setShowQrBackup] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
 
+  const isConfirmed = !!guest && guest.rsvpStatus === 'accepted';
+
   React.useEffect(() => {
-    if (!guest) return;
+    if (!guest || !isConfirmed) return;
     const cleanCode = guest.ticketCode.replace(/\D/g, '') || guest.ticketCode;
 
     QRCode.toDataURL(
@@ -39,9 +43,102 @@ export const QRPassModal: React.FC<QRPassModalProps> = ({
         }
       }
     );
-  }, [guest]);
+  }, [guest, isConfirmed]);
 
-  if (!isOpen || !guest) return null;
+  if (!isOpen) return null;
+
+  // If guest is not confirmed (either not RSVP'd, pending, or declined), show locked state
+  if (!isConfirmed) {
+    const isDeclined = guest?.rsvpStatus === 'declined';
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto safe-pb safe-pt">
+        <div className="bg-[#FAF5EA] border-2 border-[#545E46]/60 rounded-2xl sm:rounded-3xl shadow-2xl max-w-md w-full overflow-hidden my-auto max-h-[94dvh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 text-[#24301C] gold-box-glow">
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-3.5 right-3.5 z-10 w-8 h-8 rounded-full bg-[#EFE7D8] hover:bg-[#E2D5BE] text-[#545E46] flex items-center justify-center text-sm cursor-pointer transition-colors no-print border border-[#C7B99D]"
+            aria-label="Close pass modal"
+          >
+            ✕
+          </button>
+
+          {/* Top Header Strip */}
+          <div className="bg-gradient-to-b from-[#FAF5EA] to-[#EFE7D8] border-b border-[#C7B99D] text-[#24301C] p-6 pb-5 text-center space-y-1 relative">
+            <div className="inline-block border border-[#C7B99D] bg-[#E5DAC4] px-3 py-0.5 rounded-full text-[10px] uppercase tracking-[0.25em] text-[#545E46] font-cinzel mb-1 font-bold">
+              Official Gate Pass · Locked
+            </div>
+            <h3 className="font-wedding italic text-3xl sm:text-4xl font-semibold text-[#24301C]">
+              {config.coupleNames}
+            </h3>
+            <p className="font-cinzel text-xs text-[#545E46] tracking-wider font-semibold">
+              {config.venueName} · Goodhope
+            </p>
+          </div>
+
+          {/* Ticket Perforation Graphic */}
+          <div className="relative bg-[#EFE7D8] pb-3">
+            <div className="flex items-center justify-between px-2">
+              <div className="w-5 h-5 rounded-full bg-[#FAF5EA] -ml-5.5 border-r border-[#C7B99D]" />
+              <div className="border-b border-dashed border-[#C7B99D] w-full mx-2" />
+              <div className="w-5 h-5 rounded-full bg-[#FAF5EA] -mr-5.5 border-l border-[#C7B99D]" />
+            </div>
+          </div>
+
+          {/* Pass Body Content - Locked / RSVP Required State */}
+          <div className="p-6 sm:p-8 space-y-5 text-center">
+            <div className="w-16 h-16 rounded-full bg-[#EAE0CB] border-2 border-[#545E46] mx-auto flex items-center justify-center text-3xl shadow-md text-[#545E46]">
+              🔒
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-cinzel text-base sm:text-lg font-bold text-[#24301C] uppercase tracking-wider">
+                {isDeclined ? 'Invitation Declined' : 'RSVP Required for Entry Pass'}
+              </h4>
+              <p className="font-serif-luxury text-sm text-[#48533C] max-w-xs mx-auto leading-relaxed">
+                {isDeclined
+                  ? 'You previously indicated you are unable to attend. No gate pass is active. If your schedule has changed and you would like to join us, please update your response below to issue your gate entry pass.'
+                  : 'To receive your unique 4-digit gate security code and digital admission barcode, you must first confirm your attendance via RSVP.'}
+              </p>
+            </div>
+
+            {guest?.name && (
+              <div className="bg-[#F5EEDB] border border-[#C7B99D] rounded-xl p-3.5 text-xs text-[#2E3A24] space-y-1">
+                <span className="font-cinzel uppercase text-[10px] tracking-widest text-[#545E46] font-bold block">
+                  Invitation Status
+                </span>
+                <p className="font-serif-luxury text-sm font-semibold">
+                  Guest: <strong className="text-[#1D2615]">{guest.name}</strong>
+                </p>
+                <p className="text-[11px] text-[#545E46]">
+                  Status: <span className="uppercase font-bold tracking-wider">{isDeclined ? 'Declined' : 'Pending RSVP'}</span>
+                </p>
+              </div>
+            )}
+
+            <div className="pt-2 space-y-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenRSVP?.();
+                }}
+                className="w-full py-3.5 px-6 btn-olive-luxury font-cinzel text-xs font-bold tracking-[0.2em] uppercase rounded-full shadow-lg cursor-pointer"
+              >
+                ✦ RSVP to Unlock Gate Pass ✦
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="text-xs text-[#545E46] hover:text-[#24301C] underline cursor-pointer font-serif-luxury py-1 block mx-auto"
+              >
+                Return to Invitation
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const isCheckedIn = guest.checkInStatus === 'checked_in';
   const cleanCode = guest.ticketCode.replace(/\D/g, '') || guest.ticketCode;

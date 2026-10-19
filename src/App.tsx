@@ -465,6 +465,7 @@ export default function App() {
         config={config}
         isOpen={isPassOpen}
         onClose={() => setIsPassOpen(false)}
+        onOpenRSVP={() => setIsRSVPOpen(true)}
       />
 
       {/* Unified Staff Security PIN Modal (Opens either Gate or Admin depending on which PIN is entered) */}
