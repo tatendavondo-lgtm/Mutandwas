@@ -274,7 +274,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     setServerErrors((prev) => ({ ...prev, phone: '' }));
                   }
                 }}
-                placeholder="+263 77 123 4567"
+                placeholder=""
                 className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
                   serverErrors.phone
                     ? 'border-rose-400 focus:border-rose-500'
@@ -385,7 +385,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                       setServerErrors((prev) => ({ ...prev, dietaryRequirements: '' }));
                     }
                   }}
-                  placeholder="e.g. Vegetarian, Halaal, Gluten-Free, or None"
+                  placeholder=""
                   className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none ${
                     serverErrors.dietaryRequirements
                       ? 'border-rose-400 focus:border-rose-500'
@@ -410,7 +410,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                   type="text"
                   value={songRequest}
                   onChange={(e) => setSongRequest(e.target.value)}
-                  placeholder="e.g. Jerusalema - Master KG"
+                  placeholder=""
                   className="w-full bg-[#FAF8F5] border border-[#BACBB0] focus:border-[#4C6239] rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none"
                 />
               </div>
@@ -426,7 +426,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
               rows={2}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Wishing you a lifetime of love, prosperity and joy!"
+              placeholder=""
               className="w-full bg-[#FAF8F5] border border-[#BACBB0] focus:border-[#4C6239] rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none resize-none"
             />
           </div>
