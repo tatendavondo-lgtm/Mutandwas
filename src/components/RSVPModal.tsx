@@ -29,11 +29,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
   onOpenPass,
 }) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [rsvpStatus, setRsvpStatus] = useState<'accepted' | 'declined'>('accepted');
-  const [headcount, setHeadcount] = useState<number>(1);
-  const [plusOneName, setPlusOneName] = useState<string>('');
   const [dietary, setDietary] = useState<string>('');
   const [songRequest, setSongRequest] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
@@ -59,21 +56,15 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
 
       if (guest) {
         setName(guest.name || '');
-        setEmail(guest.email && !guest.email.includes('@individual.rsvp') && !guest.email.includes('@guest.vows') ? guest.email : '');
         setPhone(guest.phone || '');
         setRsvpStatus(guest.rsvpStatus === 'declined' ? 'declined' : 'accepted');
-        setHeadcount(guest.confirmedHeadcount || (guest.partySize ? Math.min(guest.partySize, guest.inviteType === 'individual' ? 2 : 4) : 1));
-        setPlusOneName(guest.plusOneName || '');
         setDietary(guest.dietaryRequirements === 'Pending' ? '' : guest.dietaryRequirements || '');
         setSongRequest(guest.songRequest || '');
         setNotes(guest.notes || '');
       } else {
         setName('');
-        setEmail('');
         setPhone('');
         setRsvpStatus('accepted');
-        setHeadcount(1);
-        setPlusOneName('');
         setDietary('');
         setSongRequest('');
         setNotes('');
@@ -105,9 +96,6 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
       if (!dietary.trim()) {
         errors.dietaryRequirements = 'Please specify dietary requirements (or enter "None").';
       }
-      if (headcount > 1 && !plusOneName.trim()) {
-        errors.plusOneName = 'Please provide the name of your accompanying guest.';
-      }
     }
 
     if (Object.keys(errors).length > 0) {
@@ -121,15 +109,15 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
       setServerValidationSuccess('Verification complete. Saving response...');
 
       // Save to database & persistent storage directly
+      const fallbackEmail = `${name.trim().toLowerCase().replace(/[^a-z0-9]/g, '') || 'guest'}@rsvp.wedding`;
       const savedGuest = submitGuestSelfRSVP({
         existingId: guest?.id,
         name: name.trim(),
-        email: email.trim() || `${name.trim().toLowerCase().replace(/[^a-z0-9]/g, '')}@guest.vows`,
+        email: guest?.email || fallbackEmail,
         phone: phone.trim(),
         rsvpStatus,
-        partySize: Math.max(rsvpStatus === 'accepted' ? headcount : 1, guest?.partySize || 1),
-        confirmedHeadcount: rsvpStatus === 'accepted' ? headcount : 0,
-        plusOneName: headcount > 1 ? plusOneName.trim() : undefined,
+        partySize: guest?.partySize || 1,
+        confirmedHeadcount: rsvpStatus === 'accepted' ? (guest?.partySize || 1) : 0,
         dietaryRequirements: dietary.trim() || 'None',
         songRequest: songRequest.trim(),
         notes: notes.trim(),
@@ -240,7 +228,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
             <div>
               <div className="flex justify-between items-center mb-1">
                 <label className="block text-xs font-semibold text-[#3B4D2B]">
-                  Your Full Name (or Family Name) *
+                  Your Full Name *
                 </label>
                 {serverErrors.name && (
                   <span className="text-[10px] text-rose-500 font-medium">
@@ -257,7 +245,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     setServerErrors((prev) => ({ ...prev, name: '' }));
                   }
                 }}
-                placeholder="e.g. Mr. & Mrs. T. Moyo"
+                placeholder=""
                 className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
                   serverErrors.name
                     ? 'border-rose-400 focus:border-rose-500'
@@ -266,70 +254,36 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label className="block text-xs font-semibold text-[#3B4D2B]">
-                    Phone / WhatsApp Number
-                  </label>
-                  {serverErrors.phone && (
-                    <span className="text-[10px] text-rose-500 font-medium">
-                      Invalid
-                    </span>
-                  )}
-                </div>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    if (serverErrors.phone) {
-                      setServerErrors((prev) => ({ ...prev, phone: '' }));
-                    }
-                  }}
-                  placeholder="+263 77 123 4567"
-                  className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
-                    serverErrors.phone
-                      ? 'border-rose-400 focus:border-rose-500'
-                      : 'border-[#BACBB0] focus:border-[#4C6239]'
-                  }`}
-                />
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="block text-xs font-semibold text-[#3B4D2B]">
+                  Phone / WhatsApp Number
+                </label>
                 {serverErrors.phone && (
-                  <p className="text-[10px] text-rose-500 mt-1">{serverErrors.phone}</p>
+                  <span className="text-[10px] text-rose-500 font-medium">
+                    Invalid
+                  </span>
                 )}
               </div>
-
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label className="block text-xs font-semibold text-[#3B4D2B]">
-                    Email Address
-                  </label>
-                  {serverErrors.email && (
-                    <span className="text-[10px] text-rose-500 font-medium">
-                      Invalid
-                    </span>
-                  )}
-                </div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    if (serverErrors.email) {
-                      setServerErrors((prev) => ({ ...prev, email: '' }));
-                    }
-                  }}
-                  placeholder="name@example.com"
-                  className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
-                    serverErrors.email
-                      ? 'border-rose-400 focus:border-rose-500'
-                      : 'border-[#BACBB0] focus:border-[#4C6239]'
-                  }`}
-                />
-                {serverErrors.email && (
-                  <p className="text-[10px] text-rose-500 mt-1">{serverErrors.email}</p>
-                )}
-              </div>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (serverErrors.phone) {
+                    setServerErrors((prev) => ({ ...prev, phone: '' }));
+                  }
+                }}
+                placeholder="+263 77 123 4567"
+                className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none transition-colors ${
+                  serverErrors.phone
+                    ? 'border-rose-400 focus:border-rose-500'
+                    : 'border-[#BACBB0] focus:border-[#4C6239]'
+                }`}
+              />
+              {serverErrors.phone && (
+                <p className="text-[10px] text-rose-500 mt-1">{serverErrors.phone}</p>
+              )}
             </div>
           </div>
 
@@ -384,73 +338,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
 
           {rsvpStatus === 'accepted' && (
             <div className="space-y-3.5 pt-1 animate-in fade-in duration-200">
-              {/* Headcount Selection */}
-              <div className="space-y-1">
-                <div className="flex justify-between items-center text-xs">
-                  <label className="font-semibold text-[#3B4D2B]">
-                    Number of Attending Guests *
-                  </label>
-                  <span className="text-[11px] text-[#5D704E] font-medium">Adults only</span>
-                </div>
-                <select
-                  value={headcount}
-                  onChange={(e) => setHeadcount(Number(e.target.value))}
-                  className="w-full bg-[#FAF8F5] border border-[#BACBB0] focus:border-[#4C6239] rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] focus:outline-none cursor-pointer"
-                >
-                  <option value={1}>1 Guest (Just Me)</option>
-                  <option value={2}>2 Guests (Me & +1 Accompanying Guest)</option>
-                  {/* Family links can select up to 4 guests; Individual token links are strictly capped at 2 guests */}
-                  {guest?.inviteType !== 'individual' && (
-                    <>
-                      <option value={3}>3 Guests (Family)</option>
-                      <option value={4}>4 Guests (Family - Maximum)</option>
-                    </>
-                  )}
-                </select>
-                <p className="text-[10px] text-[#5D704E] mt-0.5 font-medium">
-                  {guest?.inviteType === 'individual'
-                    ? 'Individual Token Invitation: Maximum 2 seats allowed.'
-                    : 'Family Group Invitation: Up to 4 seats allowed.'}
-                </p>
-                {serverErrors.headcount && (
-                  <p className="text-[10px] text-rose-500 mt-1">{serverErrors.headcount}</p>
-                )}
-              </div>
 
-              {/* Plus-one name if headcount > 1 */}
-              {headcount > 1 && (
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <label className="block text-xs font-semibold text-[#3B4D2B]">
-                      Name of Accompanying Guest (+1) *
-                    </label>
-                    {serverErrors.plusOneName && (
-                      <span className="text-[10px] text-rose-500 font-medium">
-                        Required
-                      </span>
-                    )}
-                  </div>
-                  <input
-                    type="text"
-                    value={plusOneName}
-                    onChange={(e) => {
-                      setPlusOneName(e.target.value);
-                      if (serverErrors.plusOneName) {
-                        setServerErrors((prev) => ({ ...prev, plusOneName: '' }));
-                      }
-                    }}
-                    placeholder="e.g. Shamiso Moyo"
-                    className={`w-full bg-[#FAF8F5] border rounded-xl px-3.5 py-2.5 text-xs text-[#202C1B] placeholder-[#8DA579] focus:outline-none ${
-                      serverErrors.plusOneName
-                        ? 'border-rose-400 focus:border-rose-500'
-                        : 'border-[#BACBB0] focus:border-[#4C6239]'
-                    }`}
-                  />
-                  {serverErrors.plusOneName && (
-                    <p className="text-[10px] text-rose-500">{serverErrors.plusOneName}</p>
-                  )}
-                </div>
-              )}
 
               {/* Dietary Requirements (Required by server) */}
               <div className="space-y-1.5">
