@@ -18,6 +18,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
   onNavigate: _onNavigate,
 }) => {
   const [isPaletteModalOpen, setIsPaletteModalOpen] = useState(false);
+  const [activePaletteTab, setActivePaletteTab] = useState<'palette' | 'outfits'>('palette');
 
   const bgImage = config.backgroundImageUrl && !config.backgroundImageUrl.includes('aistudio.google.com')
     ? config.backgroundImageUrl
@@ -281,57 +282,94 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
           {/* Clean Essential Details: Attire & Special Instructions in Olive Green & Cream */}
           <div className="border-t border-[#C7B99D]/70 pt-5 sm:pt-6 max-w-md mx-auto space-y-3.5">
             {/* Attire & Fabric Color Shades Card */}
-            <div className="p-3.5 bg-[#F5EEDB] border border-[#C7B99D] rounded-2xl shadow-sm text-left">
-              <div className="flex items-center gap-3 sm:gap-4">
-                {/* Small Clean Visible Silk Palette Thumbnail */}
+            <div className="p-3.5 sm:p-4 bg-[#F5EEDB] border border-[#C7B99D] rounded-2xl shadow-sm text-left space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <span className="font-cinzel uppercase text-[9px] sm:text-[10px] tracking-[0.25em] text-[#545E46] font-bold block">
+                    Wedding Attire & Dress Code
+                  </span>
+                  <p className="text-[#24301C] text-xs sm:text-sm font-semibold">
+                    {config.attire || 'Formal Silk & Earthy Palette'}
+                  </p>
+                </div>
                 <button
                   type="button"
-                  onClick={() => setIsPaletteModalOpen(true)}
-                  className="w-16 h-20 sm:w-20 sm:h-24 rounded-xl overflow-hidden shrink-0 border-2 border-[#545E46]/40 shadow-xs relative cursor-pointer group/swatch bg-[#E5DAC4] focus:outline-none"
-                  title="Click to view fabric shades"
-                  aria-label="View attire color shades"
+                  onClick={() => {
+                    setActivePaletteTab('palette');
+                    setIsPaletteModalOpen(true);
+                  }}
+                  className="font-serif-luxury text-[11px] sm:text-xs text-[#545E46] hover:text-[#24301C] underline cursor-pointer font-medium"
+                >
+                  View Style Guide ↗
+                </button>
+              </div>
+
+              {/* Two Visual Preview Thumbnails: Colour Palette & Outfit Inspiration */}
+              <div className="grid grid-cols-2 gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActivePaletteTab('palette');
+                    setIsPaletteModalOpen(true);
+                  }}
+                  className="group relative rounded-xl overflow-hidden border border-[#545E46]/30 shadow-xs bg-[#E5DAC4] aspect-[16/10] cursor-pointer focus:outline-none"
+                  title="Click to view Colour Palette"
                 >
                   <img
-                    src="/assets/images/attire_palette.jpg"
-                    alt="Olive Green and Cream Silk Fabric Shades"
-                    className="w-full h-full object-cover group-hover/swatch:scale-105 transition-transform duration-300"
+                    src="/assets/images/dress_code_palette.jpg"
+                    alt="Wedding Colour Palette"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[8px] bg-black/60 text-white font-sans font-bold leading-none">
-                    Zoom
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-2">
+                    <span className="text-[10px] font-cinzel text-white font-bold tracking-wider drop-shadow-sm">
+                      Colour Palette ↗
+                    </span>
+                  </div>
                 </button>
 
-                {/* Color Shade Info & Swatches */}
-                <div className="flex-1 min-w-0 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-cinzel uppercase text-[9px] sm:text-[10px] tracking-[0.25em] text-[#545E46] font-bold block">
-                      Wedding Attire
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActivePaletteTab('outfits');
+                    setIsPaletteModalOpen(true);
+                  }}
+                  className="group relative rounded-xl overflow-hidden border border-[#545E46]/30 shadow-xs bg-[#E5DAC4] aspect-[16/10] cursor-pointer focus:outline-none"
+                  title="Click to view Outfit Inspiration"
+                >
+                  <img
+                    src="/assets/images/dress_code_outfits.jpg"
+                    alt="Wedding Outfit Inspiration"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-2">
+                    <span className="text-[10px] font-cinzel text-white font-bold tracking-wider drop-shadow-sm">
+                      Outfit Inspiration ↗
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => setIsPaletteModalOpen(true)}
-                      className="font-serif-luxury text-[10px] sm:text-[11px] text-[#545E46] hover:text-[#24301C] underline cursor-pointer"
-                    >
-                      View Swatches ↗
-                    </button>
                   </div>
+                </button>
+              </div>
 
-                  <p className="text-[#24301C] text-xs sm:text-sm font-semibold truncate">
-                    {config.attire}
-                  </p>
-
-                  {/* Clean Visual Swatch Dots */}
-                  <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
-                    <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[#545E46] border border-white/60 shadow-xs shrink-0" />
-                      <span className="text-[10px] font-medium text-[#2E3A24]">Olive Green</span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[#E8DEC6] border border-[#C7B99D] shadow-xs shrink-0" />
-                      <span className="text-[10px] font-medium text-[#2E3A24]">Cream</span>
-                    </div>
-                  </div>
+              {/* Clean 5-Color Swatch Pills */}
+              <div className="flex items-center gap-1.5 pt-0.5 flex-wrap">
+                <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
+                  <span className="w-3 h-3 rounded-full bg-[#4E5A35] border border-white/60 shadow-xs shrink-0" />
+                  <span className="text-[10px] font-medium text-[#2E3A24]">Olive Green</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
+                  <span className="w-3 h-3 rounded-full bg-[#EFE5CE] border border-[#C7B99D] shadow-xs shrink-0" />
+                  <span className="text-[10px] font-medium text-[#2E3A24]">Cream</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
+                  <span className="w-3 h-3 rounded-full bg-[#35383B] border border-white/40 shadow-xs shrink-0" />
+                  <span className="text-[10px] font-medium text-[#2E3A24]">Charcoal</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
+                  <span className="w-3 h-3 rounded-full bg-[#BE9D78] border border-[#C7B99D] shadow-xs shrink-0" />
+                  <span className="text-[10px] font-medium text-[#2E3A24]">Nude / Beige</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#FAF5EA] px-2.5 py-1 rounded-full border border-[#D5C7AD] shadow-2xs">
+                  <span className="w-3 h-3 rounded-full bg-[#181818] border border-white/30 shadow-xs shrink-0" />
+                  <span className="text-[10px] font-medium text-[#2E3A24]">Black</span>
                 </div>
               </div>
             </div>
@@ -396,56 +434,115 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
         </div>
       </section>
 
-      {/* Lightbox Modal for Full Silk Fabric Shades Inspection */}
+      {/* Lightbox Modal for Full Style Guide & Colour Palette Inspection */}
       {isPaletteModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 animate-in fade-in duration-200"
           onClick={() => setIsPaletteModalOpen(false)}
         >
           <div
-            className="bg-[#FAF5EA] border-2 border-[#545E46] rounded-2xl max-w-xs sm:max-w-sm w-full p-4 space-y-3 shadow-2xl relative text-center animate-in zoom-in-95 duration-200"
+            className="bg-[#FAF5EA] border-2 border-[#545E46] rounded-2xl sm:rounded-3xl max-w-lg w-full p-4 sm:p-5 space-y-4 shadow-2xl relative text-center animate-in zoom-in-95 duration-200 max-h-[92vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Modal Header */}
             <div className="flex items-center justify-between pb-2 border-b border-[#D5C7AD]">
               <div className="text-left">
                 <span className="font-cinzel text-[9px] uppercase tracking-[0.2em] text-[#545E46] font-bold block">
-                  Wedding Attire Palette
+                  Wedding Attire & Style Guide
                 </span>
-                <p className="font-serif-luxury text-sm text-[#24301C] font-semibold">
-                  Olive Green & Cream Fabric Shades
+                <p className="font-serif-luxury text-sm sm:text-base text-[#24301C] font-semibold">
+                  {activePaletteTab === 'palette' ? 'Official Colour Palette' : 'Outfit & Style Inspiration'}
                 </p>
               </div>
               <button
                 onClick={() => setIsPaletteModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-[#E5DAC4] hover:bg-[#D4C5A9] text-[#24301C] flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
+                className="w-8 h-8 rounded-full bg-[#E5DAC4] hover:bg-[#D4C5A9] text-[#24301C] flex items-center justify-center text-sm font-bold cursor-pointer transition-colors"
                 aria-label="Close"
               >
                 ✕
               </button>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-[#545E46]/30 shadow-md aspect-[3/4] bg-[#E5DAC4]">
-              <img
-                src="/assets/images/attire_palette.jpg"
-                alt="Olive Green & Cream Silk Fabric Combo"
-                className="w-full h-full object-cover"
-              />
+            {/* Segmented Tab Buttons */}
+            <div className="grid grid-cols-2 gap-2 bg-[#EFE7D8] p-1 rounded-xl border border-[#C7B99D]">
+              <button
+                type="button"
+                onClick={() => setActivePaletteTab('palette')}
+                className={`py-2 px-3 rounded-lg text-xs font-cinzel font-bold transition-all cursor-pointer ${
+                  activePaletteTab === 'palette'
+                    ? 'bg-[#545E46] text-[#FAF5EA] shadow-xs'
+                    : 'text-[#545E46] hover:text-[#24301C]'
+                }`}
+              >
+                🎨 Colour Palette
+              </button>
+              <button
+                type="button"
+                onClick={() => setActivePaletteTab('outfits')}
+                className={`py-2 px-3 rounded-lg text-xs font-cinzel font-bold transition-all cursor-pointer ${
+                  activePaletteTab === 'outfits'
+                    ? 'bg-[#545E46] text-[#FAF5EA] shadow-xs'
+                    : 'text-[#545E46] hover:text-[#24301C]'
+                }`}
+              >
+                👗👔 Outfits & Styling
+              </button>
             </div>
 
-            <div className="flex items-center justify-center gap-2 pt-1">
-              <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-3 py-1.5 rounded-full border border-[#C7B99D]">
-                <span className="w-4 h-4 rounded-full bg-[#545E46] border border-white/60 shadow-xs" />
-                <span className="text-xs font-medium text-[#26331C]">Olive Green</span>
-              </div>
-              <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-3 py-1.5 rounded-full border border-[#C7B99D]">
-                <span className="w-4 h-4 rounded-full bg-[#E8DEC6] border border-[#C7B99D] shadow-xs" />
-                <span className="text-xs font-medium text-[#26331C]">Cream</span>
-              </div>
-            </div>
+            {/* Main Image Display */}
+            {activePaletteTab === 'palette' ? (
+              <div className="space-y-3">
+                <div className="rounded-xl overflow-hidden border border-[#545E46]/30 shadow-md bg-[#E5DAC4]">
+                  <img
+                    src="/assets/images/dress_code_palette.jpg"
+                    alt="Official Colour Palette - Olive Green, Cream, Charcoal, Nude / Beige, Black"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
 
-            <p className="font-serif-luxury italic text-[11px] text-[#545E46]">
-              Guests are cordially invited to dress in shades of olive green and silk cream formal attire.
-            </p>
+                {/* 5 Swatches Pills */}
+                <div className="flex items-center justify-center gap-1.5 flex-wrap pt-1">
+                  <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-2.5 py-1 rounded-full border border-[#C7B99D]">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#4E5A35] border border-white/60 shadow-xs" />
+                    <span className="text-[11px] font-medium text-[#26331C]">Olive Green</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-2.5 py-1 rounded-full border border-[#C7B99D]">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#EFE5CE] border border-[#C7B99D] shadow-xs" />
+                    <span className="text-[11px] font-medium text-[#26331C]">Cream</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-2.5 py-1 rounded-full border border-[#C7B99D]">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#35383B] border border-white/40 shadow-xs" />
+                    <span className="text-[11px] font-medium text-[#26331C]">Charcoal</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-2.5 py-1 rounded-full border border-[#C7B99D]">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#BE9D78] border border-[#C7B99D] shadow-xs" />
+                    <span className="text-[11px] font-medium text-[#26331C]">Nude / Beige</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-[#EFE7D8] px-2.5 py-1 rounded-full border border-[#C7B99D]">
+                    <span className="w-3.5 h-3.5 rounded-full bg-[#181818] border border-white/30 shadow-xs" />
+                    <span className="text-[11px] font-medium text-[#26331C]">Black</span>
+                  </div>
+                </div>
+
+                <p className="font-serif-luxury italic text-xs text-[#545E46] leading-relaxed">
+                  Guests are cordially invited to dress in formal attire inspired by these official shades: Olive Green, Silk Cream, Nude / Beige, Charcoal, and Black.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="rounded-xl overflow-hidden border border-[#545E46]/30 shadow-md bg-[#E5DAC4] max-h-[62vh] overflow-y-auto">
+                  <img
+                    src="/assets/images/dress_code_outfits.jpg"
+                    alt="Outfit Inspirations for Ladies and Gentlemen"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+
+                <p className="font-serif-luxury italic text-xs text-[#545E46] leading-relaxed">
+                  Style inspiration for ladies (satin/silk dresses, jumpsuits) and gentlemen (tailored suits, blazers & trousers) complementing the wedding palette.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}
